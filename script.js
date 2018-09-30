@@ -16,13 +16,18 @@ function newTodo() {
   input.type = "checkbox";
   input.classList.add("todo-checkbox");
   var label = document.createElement("label");
-  var button = document.createElement("button");
-  button.innerHTML = "Delete";
-  button.classList.add("button");
+  var delButton = document.createElement("button");
+  delButton.innerHTML = "Delete";
+  delButton.classList.add("button");
+  delButton.setAttribute("onclick","deleteTodo(this)");
   newTodo.appendChild(input);
   newTodo.appendChild(label);
-  newTodo.appendChild(button);
+  newTodo.appendChild(delButton);
   list.appendChild(newTodo);
+}
+
+function deleteTodo(b) {
+  b.parentNode.parentNode.removeChild(b.parentNode);
 }
 
 function deleteTodos() {
