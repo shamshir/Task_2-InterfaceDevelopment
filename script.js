@@ -3,14 +3,8 @@ Pending:
 - Update Counters
 - Programm Delete-all-checked function
 - Make Todo's editable
+- Label and clean code
 */
-
-const classNames = {
-  TODO_ITEM: 'todo-container',
-  TODO_CHECKBOX: 'todo-checkbox',
-  TODO_TEXT: 'todo-text',
-  TODO_DELETE: 'todo-delete',
-}
 
 const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
@@ -36,16 +30,28 @@ function newTodo() {
   newTodo.appendChild(label);
   newTodo.appendChild(delButton);
   list.appendChild(newTodo);
+
+  updateItemCount();
 }
 
 function deleteTodo(b) {
   b.parentNode.parentNode.removeChild(b.parentNode);
+  updateItemCount();
 }
 
-function deleteTodos() {
-
+function deleteCheckedTodos() {
+  var todoList = list.getElementsByTagName("li");
+  for (i = 0; i < todoList.length; i++) {
+    if (todoList[i].checked) {
+      list.getElementsByTagName("li")[i].parentNode.removeChild(todoList[i]);
+    }
+  }
 }
 
-function updateUncheckedCounter() {
+function updateItemCount() {
+  itemCountSpan.innerHTML = list.getElementsByTagName("li").length;
+}
+
+function updateUncheckedCount() {
 
 }
