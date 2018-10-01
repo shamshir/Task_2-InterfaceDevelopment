@@ -1,7 +1,5 @@
 /*
 Pending:
-- Update Counters
-- Programm Delete-all-checked function
 - Make Todo's editable
 - Label and clean code
 */
@@ -42,10 +40,10 @@ function deleteTodo(b) {
 }
 
 function deleteCheckedTodos() {
-  var todoList = list.getElementsByTagName("li");
-  for (i = 0; i < todoList.length; i++) {
+  var todoList = list.getElementsByTagName("input");
+  for (i = (todoList.length - 1); i >= 0; i--) {
     if (todoList[i].checked) {
-      list.getElementsByTagName("li")[i].parentNode.removeChild(todoList[i]);
+      deleteTodo(todoList[i]);
     }
   }
 }
