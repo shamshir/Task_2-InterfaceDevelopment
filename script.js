@@ -20,7 +20,7 @@ function newTodo() {
   var input = document.createElement("input");
   input.type = "checkbox";
   input.classList.add("todo-checkbox");
-  input.setAttribute("onchange", "updateUncheckedCounter()");
+  input.setAttribute("onchange", "updateUncheckedCount()");
   var label = document.createElement("label");
   var delButton = document.createElement("button");
   delButton.innerHTML = "Delete";
@@ -32,11 +32,13 @@ function newTodo() {
   list.appendChild(newTodo);
 
   updateItemCount();
+  updateUncheckedCount();
 }
 
 function deleteTodo(b) {
   b.parentNode.parentNode.removeChild(b.parentNode);
   updateItemCount();
+  updateUncheckedCount();
 }
 
 function deleteCheckedTodos() {
@@ -53,5 +55,12 @@ function updateItemCount() {
 }
 
 function updateUncheckedCount() {
-
+  var counter = 0;
+  var todoList = list.getElementsByTagName("input");
+  for (i = 0; i < todoList.length; i++) {
+    if (!todoList[i].checked) {
+      counter += 1;
+    }
+  }
+  uncheckedCountSpan.innerHTML = counter;
 }
