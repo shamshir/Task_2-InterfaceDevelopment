@@ -1,6 +1,5 @@
 /*
 Pending:
-- Make Todo's editable
 - Label and clean code
 */
 
@@ -15,16 +14,19 @@ window.onload = function () {
 function newTodo() {
   var newTodo = document.createElement("li");
   newTodo.classList.add("todo-container");
-  var input = document.createElement("input");
-  input.type = "checkbox";
-  input.classList.add("todo-checkbox");
-  input.setAttribute("onchange", "updateUncheckedCount()");
+  var inputCheck = document.createElement("input");
+  inputCheck.type = "checkbox";
+  inputCheck.classList.add("todo-checkbox");
+  inputCheck.setAttribute("onchange", "updateUncheckedCount()");
   var label = document.createElement("label");
+  var labelName = prompt("Enter your pending matter:", "");
+  label.contentEditable = "true";
+  label.innerHTML = labelName;
   var delButton = document.createElement("button");
   delButton.innerHTML = "Delete";
-  delButton.classList.add("button");
+  delButton.classList.add("button", "singleDeleteButton");
   delButton.setAttribute("onclick", "deleteTodo(this)");
-  newTodo.appendChild(input);
+  newTodo.appendChild(inputCheck);
   newTodo.appendChild(label);
   newTodo.appendChild(delButton);
   list.appendChild(newTodo);
