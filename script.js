@@ -4,6 +4,30 @@ const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
 /* ------------ Functions ------------ */
+function createCheckbox() {
+  var inputCheck = document.createElement("input");
+  inputCheck.type = "checkbox";
+  inputCheck.classList.add("todo-checkbox");
+  inputCheck.setAttribute("onchange", "updateUncheckedCount()");
+  return inputCheck;
+}
+
+function createDelButton() {
+  var delButton = document.createElement("button");
+  delButton.innerHTML = "Delete";
+  delButton.classList.add("button", "singleDeleteButton");
+  delButton.setAttribute("onclick", "deleteTodo(this)");
+  return delButton;
+}
+
+function createLabel() {
+  var label = document.createElement("label");
+  var labelName = prompt("Enter your pending matter:", "");
+  label.contentEditable = "true";
+  label.innerHTML = labelName;
+  return label;
+}
+
 function deleteTodo(b) {
   b.parentNode.parentNode.removeChild(b.parentNode);
   updateItemCount();
@@ -22,23 +46,10 @@ function deleteCheckedTodos() {
 function newTodo() {
   var newTodo = document.createElement("li");
   newTodo.classList.add("todo-container");
-  var inputCheck = document.createElement("input");
-  inputCheck.type = "checkbox";
-  inputCheck.classList.add("todo-checkbox");
-  inputCheck.setAttribute("onchange", "updateUncheckedCount()");
-  var label = document.createElement("label");
-  var labelName = prompt("Enter your pending matter:", "");
-  label.contentEditable = "true";
-  label.innerHTML = labelName;
-  var delButton = document.createElement("button");
-  delButton.innerHTML = "Delete";
-  delButton.classList.add("button", "singleDeleteButton");
-  delButton.setAttribute("onclick", "deleteTodo(this)");
-  newTodo.appendChild(inputCheck);
-  newTodo.appendChild(label);
-  newTodo.appendChild(delButton);
+  newTodo.appendChild(createCheckbox());
+  newTodo.appendChild(createLabel());
+  newTodo.appendChild(createDelButton());
   list.appendChild(newTodo);
-
   updateItemCount();
   updateUncheckedCount();
 }
