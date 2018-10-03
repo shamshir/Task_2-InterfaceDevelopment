@@ -1,14 +1,22 @@
-/*
-Pending:
-- Label and clean code
-*/
-
+/* ------------ Shortcuts ------------ */
 const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
-window.onload = function () {
+/* ------------ Functions ------------ */
+function deleteTodo(b) {
+  b.parentNode.parentNode.removeChild(b.parentNode);
+  updateItemCount();
+  updateUncheckedCount();
+}
 
+function deleteCheckedTodos() {
+  var todoList = list.getElementsByTagName("input");
+  for (i = (todoList.length - 1); i >= 0; i--) {
+    if (todoList[i].checked) {
+      deleteTodo(todoList[i]);
+    }
+  }
 }
 
 function newTodo() {
@@ -33,21 +41,6 @@ function newTodo() {
 
   updateItemCount();
   updateUncheckedCount();
-}
-
-function deleteTodo(b) {
-  b.parentNode.parentNode.removeChild(b.parentNode);
-  updateItemCount();
-  updateUncheckedCount();
-}
-
-function deleteCheckedTodos() {
-  var todoList = list.getElementsByTagName("input");
-  for (i = (todoList.length - 1); i >= 0; i--) {
-    if (todoList[i].checked) {
-      deleteTodo(todoList[i]);
-    }
-  }
 }
 
 function updateItemCount() {
