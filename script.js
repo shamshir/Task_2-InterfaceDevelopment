@@ -3,7 +3,27 @@ const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
+/* ------------ Events ------------ */
+window.onload = function() {
+
+  document.getElementById("newTodoButton").onclick = function() {
+    newTodo();
+  }
+
+  document.getElementById("deleteCheckedButton").onclick = function() {
+    deleteCheckedTodos();
+  }
+
+  document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("singleDeleteButton")) {
+      deleteTodo(e.target);
+    }
+  })
+
+}
+
 /* ------------ Functions ------------ */
+
 function createCheckbox() {
   var inputCheck = document.createElement("input");
   inputCheck.type = "checkbox";
@@ -16,7 +36,6 @@ function createDelButton() {
   var delButton = document.createElement("button");
   delButton.innerHTML = "Delete";
   delButton.classList.add("button", "singleDeleteButton");
-  delButton.setAttribute("onclick", "deleteTodo(this)");
   return delButton;
 }
 

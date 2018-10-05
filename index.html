@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Hall of fame of pending matters App</title>
+    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./styles.css" />
   </head>
   <body>
@@ -11,9 +12,9 @@
         <span>Item count: <span id="item-count">0</span></span>
         <span>Unchecked count: <span id="unchecked-count">0</span></span>
       </div>
-      <button class="button center" onClick="newTodo()">New matter to do</button>
+      <button id="newTodoButton" class="button center">New matter to do</button>
       <ul id="todo-list" class="todo-list"></ul>
-      <button class="button center todo-delete" onClick="deleteCheckedTodos()">Delete checked to do's</button>
+      <button id="deleteCheckedButton" class="button center todo-delete">Delete checked to do's</button>
     </div>
     <script src="./script.js"></script>
   </body>
