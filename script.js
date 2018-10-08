@@ -15,6 +15,9 @@ window.onload = function() {
   }
 
   document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("editButton")) {
+      changeTodoName(e.target);
+    }
     if (e.target.classList.contains("singleDeleteButton")) {
       deleteTodo(e.target);
     }
@@ -23,6 +26,10 @@ window.onload = function() {
 }
 
 /* ------------ Functions ------------ */
+function changeTodoName(b) {
+  var newName = prompt("Enter the new name for this pending matter:", "");
+  b.parentNode.childNodes[1].innerHTML = newName;
+}
 
 function createCheckbox() {
   var inputCheck = document.createElement("input");
@@ -39,10 +46,16 @@ function createDelButton() {
   return delButton;
 }
 
+function createEditButton() {
+  var editButton = document.createElement("button");
+  editButton.innerHTML = "Edit";
+  editButton.classList.add("button", "editButton");
+  return editButton;
+}
+
 function createLabel() {
   var label = document.createElement("label");
   var labelName = prompt("Enter your pending matter:", "");
-  label.contentEditable = "true";
   label.innerHTML = labelName;
   return label;
 }
@@ -68,6 +81,7 @@ function newTodo() {
   newTodo.appendChild(createCheckbox());
   newTodo.appendChild(createLabel());
   newTodo.appendChild(createDelButton());
+  newTodo.appendChild(createEditButton());
   list.appendChild(newTodo);
   updateItemCount();
   updateUncheckedCount();
